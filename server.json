@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.catchdoms/expired-domains",
+  "title": "CatchDoms — Expired Domains API",
+  "description": "Search 40K+ expired domains from 12 auction platforms with SEO metrics and scores.",
+  "version": "1.1.0",
+  "websiteUrl": "https://catchdoms.com",
+  "repository": {
+    "url": "https://github.com/Sambel/catchdoms-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "sse",
+      "url": "https://catchdoms.com/mcp/catchdoms/free"
+    }
+  ]
+}

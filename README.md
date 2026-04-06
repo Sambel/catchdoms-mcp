@@ -4,9 +4,24 @@ MCP (Model Context Protocol) server for [CatchDoms](https://catchdoms.com) — s
 
 Use this server to let AI assistants (Claude, Cursor, Windsurf, etc.) search for expired domains, check auction prices, and find high-value domains programmatically.
 
-## Quick Start
+## Quick Start (Free — no API key needed)
 
-Add this to your MCP client configuration (Claude Desktop, Cursor, etc.):
+Try it instantly — no signup required:
+
+```json
+{
+  "mcpServers": {
+    "catchdoms": {
+      "url": "https://catchdoms.com/mcp/catchdoms/free",
+      "transport": "sse"
+    }
+  }
+}
+```
+
+**Free tier includes:** Top 50 domains per search, first 10 names visible, basic SEO metrics. Trust Flow, Citation Flow, and GMB detection require Pro.
+
+### Pro (full access)
 
 ```json
 {
@@ -22,9 +37,16 @@ Add this to your MCP client configuration (Claude Desktop, Cursor, etc.):
 }
 ```
 
-**Get your API key:** [Sign up for free](https://catchdoms.com/register) → [API Settings](https://catchdoms.com/api-access)
+**Get your API key:** [Sign up for free](https://catchdoms.com/register) → [API Settings](https://catchdoms.com/api-access) → [See pricing](https://catchdoms.com/pricing)
 
-> Pro subscription required for API/MCP access. [See pricing](https://catchdoms.com/pricing).
+| Feature | Free | Pro |
+|---------|------|-----|
+| Domains per search | 50 | Unlimited |
+| Visible domain names | 10 | All |
+| Trust Flow / Citation Flow | Hidden | Yes |
+| GMB detection | Hidden | Yes |
+| get_domain tool | No | Yes |
+| Rate limit | 3 req/min | 15 req/min |
 
 ## Tools
 
