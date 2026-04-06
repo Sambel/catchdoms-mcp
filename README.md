@@ -22,7 +22,7 @@ Add this to your MCP client configuration (Claude Desktop, Cursor, etc.):
 }
 ```
 
-**Get your API key:** [Sign up for free](https://catchdoms.com/register) → [API Settings](https://catchdoms.com/api/access)
+**Get your API key:** [Sign up for free](https://catchdoms.com/register) → [API Settings](https://catchdoms.com/api-access)
 
 > Pro subscription required for API/MCP access. [See pricing](https://catchdoms.com/pricing).
 
