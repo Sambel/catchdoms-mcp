@@ -1,6 +1,6 @@
 # CatchDoms MCP Server
 
-MCP (Model Context Protocol) server for [CatchDoms](https://catchdoms.com) — search 40,000+ expired and auction domains from 12 platforms, enriched with SEO metrics.
+MCP (Model Context Protocol) server for [CatchDoms](https://catchdoms.com) — search expired and auction domains from **16 platforms** plus **100k+ aged ccTLD domains** at registration price, all enriched with SEO metrics.
 
 Use this server to let AI assistants (Claude, Cursor, Windsurf, etc.) search for expired domains, check auction prices, and find high-value domains programmatically.
 
@@ -39,14 +39,15 @@ Try it instantly — no signup required:
 
 **Get your API key:** [Sign up for free](https://catchdoms.com/register) → [API Settings](https://catchdoms.com/api-access) → [See pricing](https://catchdoms.com/pricing)
 
-| Feature | Free | Pro |
-|---------|------|-----|
-| Domains per search | 50 | Unlimited |
-| Visible domain names | 10 | All |
-| Trust Flow / Citation Flow | Hidden | Yes |
-| GMB detection | Hidden | Yes |
-| get_domain tool | No | Yes |
-| Rate limit | 3 req/min | 15 req/min |
+| Feature | Free | Pro | Authority |
+|---------|------|-----|-----------|
+| Domains per search | 50 | Unlimited | Unlimited |
+| Visible domain names | 10 | All | All |
+| Trust Flow / Citation Flow | Hidden | Yes | Yes |
+| GMB detection | Hidden | Yes | Yes |
+| `get_domain` tool | No | Yes | Yes |
+| Aged domains (regfree, 100k+) | No | No | Yes |
+| Rate limit | 3 req/min | 15 req/min | 60 req/min |
 
 ## Tools
 
@@ -58,7 +59,7 @@ Search for domains with filters. Returns up to 100 results sorted by quality.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `source` | string | Filter by platform: `dynadot`, `catched`, `dropcatch`, `godaddy`, `gname`, `snapnames`, `ukdroplists`, `subreg`, `webexpire`, `parkio`, `bloomup`, `seodomains` |
+| `source` | string | Filter by platform: `dynadot`, `catched`, `dropcatch`, `godaddy`, `gname`, `snapnames`, `ukdroplists`, `subreg`, `webexpire`, `parkio`, `bloomup`, `seodomains`, `nameshift`, `nicsell`, `gnews-domains`, `backorders-domains`, `regfree` (Authority only) |
 | `tld` | string | Filter by TLD (`.com`, `.fr`, `.de`). Comma-separated for multiple. |
 | `score_min` | integer | Minimum quality score (0-100). 50+ = good, 70+ = excellent. |
 | `age_min` | integer | Minimum domain age in years (Wayback first snapshot). |
@@ -104,20 +105,30 @@ Get platform statistics — total domains, new today, by source, SEO coverage.
 
 ## Domain Sources
 
-| Source | Type | Domains |
-|--------|------|---------|
-| **Dynadot** | Closeouts (fixed $5-$30) | ~13K |
-| **GoDaddy** | Expiring auctions + closeouts | ~10K |
-| **DropCatch** | Auctions (Dropped, Pre-Release) | ~9.6K |
-| **Catched** | Auctions + backorder | ~3.5K |
-| **Gname** | Auctions + buy now | ~2K |
-| **SnapNames** | Pre-release + closeout | ~1K |
-| **UK Droplists** | UK dropping/expired | ~2K |
-| **Subreg** | Expiring auctions | ~500 |
-| **WebExpire** | French .fr auctions | ~500 |
-| **Park.io** | Premium auctions | ~30 |
-| **BloomUp** | French .fr auctions + buy now | ~600 |
-| **SEO.Domains** | Buy now with SEO metrics | ~59K |
+16 auction & marketplace sources, refreshed daily:
+
+| Source | Type |
+|--------|------|
+| **Dynadot** | Closeouts (fixed $5-$30) + auctions |
+| **GoDaddy** | Expiring auctions + closeouts |
+| **DropCatch** | Auctions (Dropped, Pre-Release) |
+| **Catched** | Auctions + backorder |
+| **Gname** | Auctions + buy now |
+| **SnapNames** | Pre-release + closeout |
+| **UK Backorder** | UK dropping/expired |
+| **Subreg** | Expiring auctions |
+| **WebExpire** | French .fr auctions |
+| **Park.io** | Premium auctions |
+| **BloomUp** | French .fr auctions + buy now |
+| **SEO.Domains** | Buy now with SEO metrics |
+| **NameShift** | Premium buy-now / make offer |
+| **Nicsell** | European ccTLD auctions (top-auktionen) |
+| **Gnews Domains** | Hand-curated premium news domains, buy-now |
+| **Backorders Domains** | Niche ccTLD auctions (.ie, .si, .paris, .tw, .ph, .mx…) |
+
+### Authority-only: Regfee Database
+
+100k+ aged ccTLD domains across 60+ TLDs (.fr, .de, .it, .co.uk, .nl, .id, .kz and dozens more) **available at registration price**. No auction, no bidding war. Same SEO enrichment (TF/CF/DA/backlinks/Wayback) on every entry. Use `source=regfree` from the MCP `search_domains` tool with an Authority API key.
 
 ## SEO Metrics
 
