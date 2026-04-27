@@ -46,7 +46,7 @@ Try it instantly — no signup required:
 | Trust Flow / Citation Flow | Hidden | Yes | Yes |
 | GMB detection | Hidden | Yes | Yes |
 | `get_domain` tool | No | Yes | Yes |
-| Aged domains (regfree, 100k+) | No | No | Yes |
+| Aged domains (regfee, 100k+) | No | No | Yes |
 | Rate limit | 3 req/min | 15 req/min | 60 req/min |
 
 ## Tools
