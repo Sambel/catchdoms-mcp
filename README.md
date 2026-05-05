@@ -1,8 +1,8 @@
-# CatchDoms MCP Server
+# CatchDoms — Expired Domains API & MCP Server
 
-MCP (Model Context Protocol) server for [CatchDoms](https://catchdoms.com) — search expired and auction domains from **16 platforms** plus **100k+ aged ccTLD domains** at registration price, all enriched with SEO metrics.
+CatchDoms exposes an **Expired Domains API** and an **MCP (Model Context Protocol) server** that aggregate expired domains from **16 auction platforms** (Dynadot, GoDaddy, DropCatch, SnapNames, Catched, Gname, BloomUp, UKBackorder, DomainLore, and 7 more) plus **100,000+ aged ccTLD domains** available at registration price. Every domain is enriched with Trust Flow, Citation Flow, Domain Authority, backlinks count, referring domains, and Wayback history.
 
-Use this server to let AI assistants (Claude, Cursor, Windsurf, etc.) search for expired domains, check auction prices, and find high-value domains programmatically.
+Use the **REST API** to integrate expired domain data into your tools, scripts, or pipelines. Use the **MCP server** to let Claude, Cursor, Windsurf, or any MCP-compatible AI assistant search expired domains conversationally — find drop-catches, check auction prices, and surface high-value aged domains programmatically.
 
 ## Quick Start (Free — no API key needed)
 
