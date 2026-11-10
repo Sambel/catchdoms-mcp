@@ -1,12 +1,12 @@
-# CatchDoms — Expired Domains API & MCP Server
+# CatchDoms Expired Domains API & MCP Server
 
-CatchDoms exposes an **Expired Domains API** and an **MCP (Model Context Protocol) server** that aggregate **22 sources**: 21 auction and marketplace platforms (Dynadot, GoDaddy, DropCatch, SnapNames, Catched, Gname, Namecheap, NameSilo, Sedo, BloomUp, UKDroplists, DomainLore, Rakko, and more) plus an aged ccTLD database of **183,537 domains** available at registration price. Authority+ adds a **weekly pending-delete inventory** of domains about to drop. Every domain is enriched with Trust Flow, Citation Flow, Domain Authority, backlinks count, referring domains, and Wayback history.
+CatchDoms exposes an **Expired Domains API** and an **MCP (Model Context Protocol) server** that aggregate **27 sources**: 26 auction and marketplace platforms (Dynadot, GoDaddy, DropCatch, SnapNames, Catched, Gname, Namecheap, NameSilo, Porkbun, Sedo, BloomUp, UKDroplists, DomainLore, Rakko, and the official CZ.NIC, WHC.ca, Internet.ee and Aftermarket.pl registries) plus an aged ccTLD database of **180k+ domains** available at registration price. Authority+ adds a **weekly pending-delete inventory** of domains about to drop. Every domain is enriched with Trust Flow, Citation Flow, Domain Authority, backlinks count, referring domains, and Wayback history.
 
-Use the **REST API** to integrate expired domain data into your tools, scripts, or pipelines. Use the **MCP server** to let Claude, Cursor, Windsurf, or any MCP-compatible AI assistant search expired domains conversationally — find drop-catches, check auction prices, and surface high-value aged domains programmatically.
+Use the **REST API** to integrate expired domain data into your tools, scripts, or pipelines. Use the **MCP server** to let Claude, Cursor, Windsurf, or any MCP-compatible AI assistant search expired domains conversationally: find drop-catches, check auction prices, and surface high-value aged domains programmatically.
 
-## Quick Start (Free — no API key needed)
+## Quick Start (Free, no API key needed)
 
-Try it instantly — no signup required:
+Try it instantly, no signup required:
 
 ```json
 {
@@ -46,7 +46,7 @@ Try it instantly — no signup required:
 | Trust Flow / Citation Flow | Hidden | Yes | Yes | Yes |
 | GMB detection | Hidden | Yes | Yes | Yes |
 | `get_domain` tool | No | Yes | Yes | Yes |
-| Aged ccTLD domains (`regfree`, 183,537) | No | No | Yes | Yes |
+| Aged ccTLD domains (`regfree`, 180k+) | No | No | Yes | Yes |
 | `search_pending_delete_domains` tool | No | No | No | Yes |
 | MCP rate limit | 3 req/min | 15 req/min | 15 req/min | 15 req/min |
 | REST API rate limit | n/a | 15 req/min | 60 req/min | 60 req/min |
@@ -95,13 +95,13 @@ Get full details for a specific domain.
 
 ### `list_filters`
 
-Get available filter options with counts — sources, TLDs, and languages.
+Get available filter options with counts: sources, TLDs, and languages.
 
 *No parameters.*
 
 ### `get_stats`
 
-Get platform statistics — total domains, new today, by source, SEO coverage.
+Get platform statistics: total domains, new today, by source, SEO coverage.
 
 *No parameters.*
 
@@ -127,53 +127,58 @@ Get platform statistics — total domains, new today, by source, SEO coverage.
 
 ## Domain Sources
 
-21 auction and marketplace sources, refreshed daily:
+26 auction and marketplace sources, refreshed daily. Row counts are live measurements taken in production on 2026-11-10:
 
-| Source | Type |
-|--------|------|
-| **Dynadot** | Closeouts (fixed $5-$30) + auctions |
-| **GoDaddy** | Expiring auctions + closeouts |
-| **DropCatch** | Auctions (Dropped, Pre-Release) |
-| **Catched** | Auctions + backorder |
-| **Gname** | Auctions + buy now |
-| **SnapNames** | Pre-release + closeout |
-| **Namecheap** | Marketplace auctions with pre-filled Ahrefs DR, Majestic TF/CF, Estibot valuation |
-| **NameSilo** | Registrar expired-domain auctions |
-| **Sedo** | Expiring domains |
-| **UKDroplists** | UK dropping/expired |
-| **DomainLore** | UK auctions (Spotlight, Hidden Gems, SEO) |
-| **Subreg** | Expiring auctions + closeouts |
-| **WebExpire** | French .fr auctions |
-| **BloomUp** | French .fr auctions + buy now |
-| **Park.io** | Premium auctions |
-| **Nicsell** | European ccTLD auctions (top-auktionen) |
-| **Rakko** | Japanese expired marketplace with pre-filled DR/DA/TF/CF |
-| **SEO.Domains** | Buy now with SEO metrics |
-| **NameShift** | Premium buy-now / make offer |
-| **Gnews Domains** | Hand-curated premium news domains, buy-now |
-| **Backorders Domains** | Niche ccTLD auctions (.ie, .si, .tw, .ph, .mx…) |
+| Source | `source=` | Type | Listings |
+|--------|-----------|------|----------|
+| **Dynadot** | `dynadot` | Closeouts (fixed $5-$30) + auctions | 5,234 |
+| **GoDaddy** | `godaddy` | Expiring auctions + closeouts | 13,032 |
+| **DropCatch** | `dropcatch` | Auctions (Dropped, Pre-Release) | 19,494 |
+| **Catched** | `catched` | Auctions + backorder | 496 |
+| **Gname** | `gname` | Auctions + buy now | 6,555 |
+| **SnapNames** | `snapnames` | Pre-release + closeout | 20,137 |
+| **Namecheap** | `namecheap` | Marketplace auctions with pre-filled Ahrefs DR, Majestic TF/CF, Estibot valuation | 146,344 |
+| **NameSilo** | `namesilo` | Registrar expired-domain auctions | 1,723 |
+| **Porkbun** | `porkbun` | Fixed-price closeouts, no bidding, price descends on a schedule | 14,109 |
+| **Sedo** | `sedo` | Expiring domains | 1,188 |
+| **UKDroplists** | `ukdroplists` | UK dropping/expired | 37 |
+| **DomainLore** | `domainlore` | UK auctions (Spotlight, Hidden Gems, SEO) | 168 |
+| **Subreg** | `subreg` | Expiring auctions + closeouts | 600 |
+| **WebExpire** | `webexpire` | French .fr auctions | 44 |
+| **BloomUp** | `bloomup` | French .fr auctions + buy now | 619 |
+| **Park.io** | `parkio` | Premium auctions | 30 |
+| **Nicsell** | `nicsell` | European ccTLD auctions (top-auktionen) | 283 |
+| **Rakko** | `rakkodomain` | Japanese expired marketplace with pre-filled DR/DA/TF/CF | 1,897 |
+| **SEO.Domains** | `seodomains` | Buy now with SEO metrics | 116,449 |
+| **NameShift** | `nameshift` | Premium buy-now / make offer | 213,004 |
+| **Gnews Domains** | `gnews-domains` | Hand-curated premium news domains, buy-now | 127 |
+| **Backorders Domains** | `backorders-domains` | Niche ccTLD auctions (.ie, .si, .tw, .ph, .mx…) | 53 |
+| **CZ.NIC** | `cznic` | Official .cz registry auctions on expired domains. No price, no bids, no SEO in the feed | 5,611 |
+| **WHC.ca** | `whc` | Canadian .ca domains dropping through CIRA's TBR process, weekly wave, CAD | 8,506 |
+| **Internet.ee** | `internet-ee` | Official .ee registry, sealed-bid: no price or bid count is published anywhere | 57 |
+| **Aftermarket.pl** | `aftermarket-pl` | Polish marketplace .pl auctions only, not its 468k buy-now listings, PLN | 4,858 |
 
 ### Authority: aged ccTLD database (`regfree`)
 
-183,537 aged ccTLD domains across 84 country extensions (.fr, .de, .it, .co.uk, .nl, .id, .kz and dozens more) **available at registration price**. No auction, no bidding war. Same SEO enrichment (TF/CF/DA/backlinks/Wayback) on every entry. Use `source=regfree` from the MCP `search_domains` tool with an Authority API key.
+183,214 aged ccTLD domains across 106 country extensions (.fr, .de, .it, .co.uk, .nl, .id, .kz and dozens more) **available at registration price**. No auction, no bidding war. Same SEO enrichment (TF/CF/DA/backlinks/Wayback) on every entry. Use `source=regfree` from the MCP `search_domains` tool with an Authority API key. The server requires at least one narrowing filter alongside it, **with a non-zero value** (`tld`, `score_min`, `contains`, `language`, `age_min`, `da_min`, `rd_min`, `tf_min`, `cf_min`, `categories`, `snapshots_min`, `has_backlinks`, `has_edu_gov`, `has_gmb`): `score_min=0` or `da_min=0` does not count. The result set is capped at 5,000 rows.
 
 ### Authority+: weekly pending-delete inventory
 
-205,679 actionable domains in the latest weekly batch, across 144+ ccTLDs and gTLDs, WHOIS-classified (`pendingDelete`, `redemptionPeriod`, `serverHold`, `clientHold`, `transition`, `quarantine`) with predicted drop dates 5 to 45 days out. ccTLDs come from a weekly OpenINTEL snapshot, gTLDs from a daily feed. Use the `search_pending_delete_domains` tool with an Authority+ API key.
+437,634 domains carry a predicted drop date still ahead, across 143 ccTLDs and gTLDs, refreshed weekly (175,636 rows in the batch of 2026-11-09). 866,049 more are classified but have no computable date yet, and the default view returns both, 1,303,683 rows in all; rows whose predicted date has already passed are hidden unless you ask for them. 12 weekly snapshots are retained, 2,142,061 rows in total. Every row is WHOIS-classified (`pendingDelete`, `redemptionPeriod`, `serverHold`, `clientHold`, `transition`, `quarantine`), and the predicted dates that exist fall 5 to 45 days out. ccTLDs come from a weekly OpenINTEL snapshot, gTLDs from a daily feed. Use the `search_pending_delete_domains` tool with an Authority+ API key.
 
 ## SEO Metrics
 
 Every domain is enriched with:
 
-- **Quality Score** (0-100) — composite score based on age, authority, backlinks, name quality
-- **Domain Authority** (0-100) — from DataForSEO
-- **Trust Flow / Citation Flow** (0-100) — from Majestic
-- **TTF Topic** — topical category (e.g., `Business/Marketing`)
-- **Referring Domains** — unique linking domains count
-- **Backlinks** — total backlink count
-- **Domain Age** — from Wayback Machine first snapshot
-- **Language** — detected from archived content
-- **Google Business** — GMB listing detection
+- **Quality Score** (0-100): composite score based on age, authority, backlinks, name quality
+- **Domain Authority** (0-100): from DataForSEO
+- **Trust Flow / Citation Flow** (0-100): from Majestic
+- **TTF Topic**: topical category (e.g., `Business/Marketing`)
+- **Referring Domains**: unique linking domains count
+- **Backlinks**: total backlink count
+- **Domain Age**: from Wayback Machine first snapshot
+- **Language**: detected from archived content
+- **Google Business**: GMB listing detection
 
 ## Response Format
 
