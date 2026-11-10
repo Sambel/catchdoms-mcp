@@ -1,6 +1,6 @@
 # CatchDoms Expired Domains API & MCP Server
 
-CatchDoms exposes an **Expired Domains API** and an **MCP (Model Context Protocol) server** that aggregate **27 sources**: 26 auction and marketplace platforms (Dynadot, GoDaddy, DropCatch, SnapNames, Catched, Gname, Namecheap, NameSilo, Porkbun, Sedo, BloomUp, UKDroplists, DomainLore, Rakko, and the official CZ.NIC, WHC.ca, Internet.ee and Aftermarket.pl registries) plus an aged ccTLD database of **183,214 domains** available at registration price. Authority+ adds a **weekly pending-delete inventory** of domains about to drop. Every domain is enriched with Trust Flow, Citation Flow, Domain Authority, backlinks count, referring domains, and Wayback history.
+CatchDoms exposes an **Expired Domains API** and an **MCP (Model Context Protocol) server** that aggregate **27 sources**: 26 auction and marketplace platforms (Dynadot, GoDaddy, DropCatch, SnapNames, Catched, Gname, Namecheap, NameSilo, Porkbun, Sedo, BloomUp, UKDroplists, DomainLore, Rakko, and the official CZ.NIC, WHC.ca, Internet.ee and Aftermarket.pl registries) plus an aged ccTLD database of **180k+ domains** available at registration price. Authority+ adds a **weekly pending-delete inventory** of domains about to drop. Every domain is enriched with Trust Flow, Citation Flow, Domain Authority, backlinks count, referring domains, and Wayback history.
 
 Use the **REST API** to integrate expired domain data into your tools, scripts, or pipelines. Use the **MCP server** to let Claude, Cursor, Windsurf, or any MCP-compatible AI assistant search expired domains conversationally: find drop-catches, check auction prices, and surface high-value aged domains programmatically.
 
@@ -46,7 +46,7 @@ Try it instantly, no signup required:
 | Trust Flow / Citation Flow | Hidden | Yes | Yes | Yes |
 | GMB detection | Hidden | Yes | Yes | Yes |
 | `get_domain` tool | No | Yes | Yes | Yes |
-| Aged ccTLD domains (`regfree`, 183,214) | No | No | Yes | Yes |
+| Aged ccTLD domains (`regfree`, 180k+) | No | No | Yes | Yes |
 | `search_pending_delete_domains` tool | No | No | No | Yes |
 | MCP rate limit | 3 req/min | 15 req/min | 15 req/min | 15 req/min |
 | REST API rate limit | n/a | 15 req/min | 60 req/min | 60 req/min |
@@ -160,11 +160,11 @@ Get platform statistics: total domains, new today, by source, SEO coverage.
 
 ### Authority: aged ccTLD database (`regfree`)
 
-183,214 aged ccTLD domains across 106 country extensions (.fr, .de, .it, .co.uk, .nl, .id, .kz and dozens more) **available at registration price**. No auction, no bidding war. Same SEO enrichment (TF/CF/DA/backlinks/Wayback) on every entry. Use `source=regfree` from the MCP `search_domains` tool with an Authority API key.
+183,214 aged ccTLD domains across 106 country extensions (.fr, .de, .it, .co.uk, .nl, .id, .kz and dozens more) **available at registration price**. No auction, no bidding war. Same SEO enrichment (TF/CF/DA/backlinks/Wayback) on every entry. Use `source=regfree` from the MCP `search_domains` tool with an Authority API key. The server requires at least one narrowing filter alongside it, **with a non-zero value** (`tld`, `score_min`, `contains`, `language`, `age_min`, `da_min`, `rd_min`, `tf_min`, `cf_min`, `categories`, `snapshots_min`, `has_backlinks`, `has_edu_gov`, `has_gmb`): `score_min=0` or `da_min=0` does not count. The result set is capped at 5,000 rows.
 
 ### Authority+: weekly pending-delete inventory
 
-2,142,061 actionable domains across 143 ccTLDs and gTLDs, refreshed weekly (175,636 rows in the batch of 2026-11-09), WHOIS-classified (`pendingDelete`, `redemptionPeriod`, `serverHold`, `clientHold`, `transition`, `quarantine`) with predicted drop dates 5 to 45 days out. ccTLDs come from a weekly OpenINTEL snapshot, gTLDs from a daily feed. Use the `search_pending_delete_domains` tool with an Authority+ API key.
+437,634 domains carry a predicted drop date still ahead, across 143 ccTLDs and gTLDs, refreshed weekly (175,636 rows in the batch of 2026-11-09). 866,049 more are classified but have no computable date yet, and the default view returns both, 1,303,683 rows in all; rows whose predicted date has already passed are hidden unless you ask for them. 12 weekly snapshots are retained, 2,142,061 rows in total. Every row is WHOIS-classified (`pendingDelete`, `redemptionPeriod`, `serverHold`, `clientHold`, `transition`, `quarantine`), and the predicted dates that exist fall 5 to 45 days out. ccTLDs come from a weekly OpenINTEL snapshot, gTLDs from a daily feed. Use the `search_pending_delete_domains` tool with an Authority+ API key.
 
 ## SEO Metrics
 
