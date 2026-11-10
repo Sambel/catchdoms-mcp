@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.catchdoms/expired-domains",
-  "title": "CatchDoms — Expired Domains API",
-  "description": "Search 22 sources of expired domains with SEO metrics, 183,537 aged ccTLDs, and pending-delete.",
-  "version": "1.2.0",
+  "title": "CatchDoms Expired Domains API",
+  "description": "Search 26 expired-domain sources with SEO metrics, 183,214 aged ccTLDs, and pending-delete.",
+  "version": "1.3.0",
   "websiteUrl": "https://catchdoms.com",
   "repository": {
     "url": "https://github.com/Sambel/catchdoms-mcp",
